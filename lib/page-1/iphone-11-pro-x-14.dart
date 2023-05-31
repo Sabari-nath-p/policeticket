@@ -5,11 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
 class Scene extends StatelessWidget {
+  double fem = 0; // MediaQuery.of(context).size.width / baseWidth;
+  double ffem = 0; //fem * 0.9;
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.8;
+    double ffem = fem * 0.9;
     return Container(
       width: double.infinity,
       child: Container(
@@ -236,80 +238,6 @@ class Scene extends StatelessWidget {
               ),
             ),
             Positioned(
-              // group5390Kft (2:68)
-              left: 23 * fem,
-              top: 553 * fem,
-              child: TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(
-                      23 * fem, 19 * fem, 38 * fem, 20 * fem),
-                  width: 329 * fem,
-                  height: 83 * fem,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Color(0x0f0082b4)),
-                    color: Color(0x0f0283b5),
-                    borderRadius: BorderRadius.circular(21 * fem),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        // autogroupffavabp (K9Ek7TmBNfpWU7zfXVfFaV)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 8 * fem, 155 * fem, 7 * fem),
-                        height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              // reportno1K3c (2:70)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 0 * fem, 5 * fem),
-                              child: Text(
-                                'Report No 1',
-                                style: SafeGoogleFont(
-                                  'Prompt',
-                                  fontSize: 12 * ffem,
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.1590000788 * ffem / fem,
-                                  color: Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              // allappuzhadiW (2:71)
-                              'Allappuzha',
-                              style: SafeGoogleFont(
-                                'Prompt',
-                                fontSize: 8 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.1590000391 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        // autogrouprxuumZp (K9EkGNfzjmeYxJ95JiRxUu)
-                        width: 44 * fem,
-                        height: 44 * fem,
-                        child: Image.asset(
-                          'assets/page-1/images/auto-group-rxuu.png',
-                          width: 44 * fem,
-                          height: 44 * fem,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
               // group5395H2N (2:77)
               left: 23 * fem,
               top: 648 * fem,
@@ -327,42 +255,11 @@ class Scene extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      // autogroupfr7bXSW (K9EkVcnvrjU6HwST6EFR7b)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 8 * fem, 152 * fem, 7 * fem),
-                      height: double.infinity,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            // reportno2eX8 (2:79)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 5 * fem),
-                            child: Text(
-                              'Report No 2',
-                              style: SafeGoogleFont(
-                                'Prompt',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w500,
-                                height: 1.1590000788 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                          ),
-                          Text(
-                            // kayamkulamAEa (2:80)
-                            'Kayamkulam',
-                            style: SafeGoogleFont(
-                              'Prompt',
-                              fontSize: 8 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.1590000391 * ffem / fem,
-                              color: Color(0xff000000),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                        // autogroupfr7bXSW (K9EkVcnvrjU6HwST6EFR7b)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 8 * fem, 152 * fem, 7 * fem),
+                        height: double.infinity,
+                        child: Container()),
                     Container(
                       // group5385hkJ (2:81)
                       width: 44 * fem,
@@ -836,6 +733,76 @@ class Scene extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  report() {
+    return TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
+      child: Container(
+        padding: EdgeInsets.fromLTRB(23 * fem, 19 * fem, 38 * fem, 20 * fem),
+        width: 329 * fem,
+        height: 83 * fem,
+        decoration: BoxDecoration(
+          border: Border.all(color: Color(0x0f0082b4)),
+          color: Color(0x0f0283b5),
+          borderRadius: BorderRadius.circular(21 * fem),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              // autogroupffavabp (K9Ek7TmBNfpWU7zfXVfFaV)
+              margin: EdgeInsets.fromLTRB(0 * fem, 8 * fem, 155 * fem, 7 * fem),
+              height: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    // reportno1K3c (2:70)
+                    margin:
+                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5 * fem),
+                    child: Text(
+                      'Report No 1',
+                      style: SafeGoogleFont(
+                        'Prompt',
+                        fontSize: 12 * ffem,
+                        fontWeight: FontWeight.w500,
+                        height: 1.1590000788 * ffem / fem,
+                        color: Color(0xff000000),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    // allappuzhadiW (2:71)
+                    'Allappuzha',
+                    style: SafeGoogleFont(
+                      'Prompt',
+                      fontSize: 8 * ffem,
+                      fontWeight: FontWeight.w400,
+                      height: 1.1590000391 * ffem / fem,
+                      color: Color(0xff000000),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              // autogrouprxuumZp (K9EkGNfzjmeYxJ95JiRxUu)
+              width: 44 * fem,
+              height: 44 * fem,
+              child: Image.asset(
+                'assets/page-1/images/auto-group-rxuu.png',
+                width: 44 * fem,
+                height: 44 * fem,
               ),
             ),
           ],

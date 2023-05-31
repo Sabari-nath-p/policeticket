@@ -1,16 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/firebase_options.dart';
 import 'package:myapp/page-1/login.dart';
 import 'package:myapp/page-1/ticket.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/iphone-11-pro-x-14.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 // import 'package:myapp/page-1/ticket.dart';
 // import 'package:myapp/page-1/dubai.dart';
 // import 'package:myapp/page-1/login.dart';
-
-void main() => runApp(MyApp());
+String log = "";
+void main() async {
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  log = pref.getString("LOGIN").toString();
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -24,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: SingleChildScrollView(
-          child: signup(),
+          child: (log == "IN") ? ticket() : signup(),
         ),
       ),
     );

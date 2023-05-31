@@ -1,87 +1,50 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/utils.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:myapp/page-1/iphone-11-pro-x-14.dart';
 
-class signup extends StatelessWidget {
+import 'package:myapp/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class signup extends StatefulWidget {
+  @override
+  State<signup> createState() => _signupState();
+}
+
+class _signupState extends State<signup> {
+  TextEditingController nameText = TextEditingController();
+  TextEditingController passwordText = TextEditingController();
+  TextEditingController emailText = TextEditingController();
+
+  bool isLoading = false;
+  bool isLogin = false;
+  double fem = 0;
+  double ffem = 0;
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.8;
+    fem = MediaQuery.of(context).size.width / baseWidth;
+    ffem = fem * 0.8;
     return Container(
       width: double.infinity,
+      alignment: Alignment.center,
       child: Container(
         // loginTBL (9:229)
         padding: EdgeInsets.fromLTRB(25 * fem, 26 * fem, 25 * fem, 256 * fem),
         width: double.infinity,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Color(0xffffffff),
           borderRadius: BorderRadius.circular(60 * fem),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              // statusbarNJJ (9:252)
-              margin: EdgeInsets.fromLTRB(8 * fem, 0 * fem, 6 * fem, 138 * fem),
-              width: double.infinity,
-              height: 24 * fem,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    // foC (9:253)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 220 * fem, 0 * fem),
-                    child: Text(
-                      '9:45',
-                      textAlign: TextAlign.center,
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 14 * ffem,
-                        fontWeight: FontWeight.w500,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff767a8a),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    // frame162460BFk (9:254)
-                    padding:
-                        EdgeInsets.fromLTRB(7 * fem, 6 * fem, 2 * fem, 6 * fem),
-                    height: double.infinity,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // signaliFg (9:255)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 21 * fem, 0 * fem),
-                          width: 10 * fem,
-                          height: 12 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/signal.png',
-                            width: 10 * fem,
-                            height: 12 * fem,
-                          ),
-                        ),
-                        Container(
-                          // battery2nA (9:256)
-                          width: 20 * fem,
-                          height: 12 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/battery.png',
-                            width: 20 * fem,
-                            height: 12 * fem,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            SizedBox(
+              height: 200,
             ),
             Container(
               // frame162519a2z (9:230)
@@ -108,7 +71,7 @@ class signup extends StatelessWidget {
                   Container(
                     // inputfieldcVU (9:234)
                     margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 19 * fem),
+                        0 * fem, 0 * fem, 0 * fem, 10 * fem),
                     padding: EdgeInsets.fromLTRB(
                         20 * fem, 22 * fem, 83.5 * fem, 22 * fem),
                     width: double.infinity,
@@ -122,7 +85,7 @@ class signup extends StatelessWidget {
                         Container(
                           // frame511037SE (9:235)
                           margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 93.5 * fem, 0 * fem),
+                              0 * fem, 0 * fem, 10 * fem, 0 * fem),
                           width: 18 * fem,
                           height: 14.32 * fem,
                           child: Image.asset(
@@ -131,157 +94,270 @@ class signup extends StatelessWidget {
                             height: 14.32 * fem,
                           ),
                         ),
-                        Text(
-                          // emailRSv (9:237)
-                          'Sign Up Email',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 16 * ffem,
-                            fontWeight: FontWeight.w500,
-                            height: 1.6000000238 * ffem / fem,
-                            color: Color(0xff979797),
+                        Expanded(
+                            child: TextField(
+                          controller: emailText,
+                          style: mystyle(color: Colors.black),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            isDense: true,
+                            isCollapsed: true,
+                            hintText: "Sign Up Email",
+                            hintStyle: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 16 * ffem,
+                              fontWeight: FontWeight.w500,
+                              height: 1.6000000238 * ffem / fem,
+                              color: Color(0xff979797),
+                            ),
                           ),
-                        ),
+                        ))
                       ],
                     ),
                   ),
                   Container(
-                    // oruseinstantsignupZZ8 (9:238)
+                    // inputfieldcVU (9:234)
                     margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 18 * fem),
-                    child: Text(
-                      'Or Use Instant Sign Up',
-                      textAlign: TextAlign.center,
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 12 * ffem,
-                        fontWeight: FontWeight.w600,
-                        height: 1.7000001272 * ffem / fem,
-                        color: Color(0xff0a0d14),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    // buttonspi (9:239)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 19 * fem),
+                        0 * fem, 0 * fem, 0 * fem, 10 * fem),
                     padding: EdgeInsets.fromLTRB(
-                        20.46 * fem, 16 * fem, 85.5 * fem, 16 * fem),
+                        20 * fem, 22 * fem, 83.5 * fem, 22 * fem),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffdadada)),
-                      borderRadius: BorderRadius.circular(24 * fem),
+                      color: Color(0xfff9fafb),
+                      borderRadius: BorderRadius.circular(20 * fem),
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          // componentMjt (9:240)
+                          // frame511037SE (9:235)
                           margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 56.96 * fem, 0 * fem),
-                          width: 23.09 * fem,
-                          height: 23.59 * fem,
+                              0 * fem, 0 * fem, 10 * fem, 0 * fem),
+                          width: 18 * fem,
+                          height: 14.32 * fem,
                           child: Image.asset(
-                            'assets/page-1/images/component.png',
-                            width: 23.09 * fem,
-                            height: 23.59 * fem,
+                            'assets/page-1/images/frame-51103.png',
+                            width: 18 * fem,
+                            height: 14.32 * fem,
                           ),
                         ),
-                        Text(
-                          // signwithgooglefVg (9:241)
-                          'Sign With Google',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 16 * ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.6000000238 * ffem / fem,
-                            color: Color(0xff0a0d14),
+                        Expanded(
+                            child: TextField(
+                          controller: passwordText,
+                          style: mystyle(color: Colors.black),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            isDense: true,
+                            isCollapsed: true,
+                            hintText: "Enter Password",
+                            hintStyle: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 16 * ffem,
+                              fontWeight: FontWeight.w500,
+                              height: 1.6000000238 * ffem / fem,
+                              color: Color(0xff979797),
+                            ),
                           ),
-                        ),
+                        ))
                       ],
                     ),
                   ),
-                  Container(
-                    // buttonCkW (9:242)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 29 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        21.44 * fem, 15.98 * fem, 106 * fem, 15.98 * fem),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffdadada)),
-                      borderRadius: BorderRadius.circular(25 * fem),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // appleiconshxA (9:243)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 47.44 * fem, 0 * fem),
-                          width: 21.12 * fem,
-                          height: 26.04 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/apple-icons.png',
-                            width: 21.12 * fem,
-                            height: 26.04 * fem,
-                          ),
-                        ),
-                        Text(
-                          // signwithappleQra (9:249)
-                          'Sign With Apple',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 16 * ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.6000000238 * ffem / fem,
-                            color: Color(0xff0a0d14),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  RichText(
-                    // alreadyhaveanaccountsigninYxn (9:251)
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 12 * ffem,
-                        fontWeight: FontWeight.w500,
-                        height: 1.7000001272 * ffem / fem,
-                        color: Color(0xff767a8a),
+                  if (!isLogin)
+                    Container(
+                      // inputfieldcVU (9:234)
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 19 * fem),
+                      padding: EdgeInsets.fromLTRB(
+                          20 * fem, 22 * fem, 83.5 * fem, 22 * fem),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Color(0xfff9fafb),
+                        borderRadius: BorderRadius.circular(20 * fem),
                       ),
-                      children: [
-                        TextSpan(
-                          text: 'Already Have an Account?',
-                        ),
-                        TextSpan(
-                          text: ' ',
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 12 * ffem,
-                            fontWeight: FontWeight.w500,
-                            height: 1.7000001272 * ffem / fem,
-                            color: Color(0xff767a8a),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            // frame511037SE (9:235)
+                            margin: EdgeInsets.fromLTRB(
+                                0 * fem, 0 * fem, 10 * fem, 0 * fem),
+                            width: 18 * fem,
+                            height: 14.32 * fem,
+                            child: Image.asset(
+                              'assets/page-1/images/frame-51103.png',
+                              width: 18 * fem,
+                              height: 14.32 * fem,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: 'Sign In',
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 12 * ffem,
-                            fontWeight: FontWeight.w500,
-                            height: 1.7000001272 * ffem / fem,
-                            color: Color(0xff1f7ae0),
-                          ),
-                        ),
-                      ],
+                          Expanded(
+                              child: TextField(
+                            controller: nameText,
+                            style: mystyle(color: Colors.black),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              isDense: true,
+                              isCollapsed: true,
+                              hintText: "Enter Name",
+                              hintStyle: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 16 * ffem,
+                                fontWeight: FontWeight.w500,
+                                height: 1.6000000238 * ffem / fem,
+                                color: Color(0xff979797),
+                              ),
+                            ),
+                          ))
+                        ],
+                      ),
                     ),
+                  if (isLogin)
+                    InkWell(
+                      onTap: () {
+                        if (passwordText.text.isNotEmpty &&
+                            emailText.text.isNotEmpty) {
+                          sendlogin(
+                              emailText.text.trim(), passwordText.text.trim());
+                        } else {
+                          Fluttertoast.showToast(msg: "Please fill");
+                        }
+                      },
+                      child: Container(
+                        width: 200,
+                        height: 50,
+                        margin: EdgeInsets.only(bottom: 10),
+                        alignment: Alignment.center,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                        child: (isLoading)
+                            ? LoadingAnimationWidget.staggeredDotsWave(
+                                color: Colors.white, size: 25)
+                            : Text(
+                                "sign In",
+                                style: mystyle(color: Colors.white, size: 23),
+                              ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.black),
+                      ),
+                    ),
+                  if (!isLogin)
+                    InkWell(
+                      onTap: () {
+                        if (nameText.text.isNotEmpty &&
+                            passwordText.text.isNotEmpty &&
+                            emailText.text.isNotEmpty) {
+                          sendsignup(
+                              emailText.text, passwordText.text, nameText.text);
+                        } else {
+                          Fluttertoast.showToast(msg: "Please fill");
+                        }
+                      },
+                      child: Container(
+                        width: 200,
+                        height: 50,
+                        margin: EdgeInsets.only(bottom: 10),
+                        alignment: Alignment.center,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                        child: (isLoading)
+                            ? LoadingAnimationWidget.staggeredDotsWave(
+                                color: Colors.white, size: 25)
+                            : Text(
+                                "Sign Up",
+                                style: mystyle(color: Colors.white, size: 23),
+                              ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.black),
+                      ),
+                    ),
+                  SizedBox(
+                    height: 20,
                   ),
+                  if (!isLogin)
+                    Container(
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Already Have an Account?',
+                            style: mystyle(size: 14),
+                          ),
+                          Text(
+                            ' ',
+                            style: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 14 * ffem,
+                              fontWeight: FontWeight.w500,
+                              height: 1.7000001272 * ffem / fem,
+                              color: Color(0xff767a8a),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                isLogin = !isLogin;
+                              });
+                            },
+                            child: Text(
+                              'Sign in',
+                              style: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 14 * ffem,
+                                fontWeight: FontWeight.w500,
+                                height: 1.7000001272 * ffem / fem,
+                                color: Color(0xff1f7ae0),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  if (isLogin)
+                    Container(
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'you, didn\'t have an account?',
+                            style: mystyle(size: 14),
+                          ),
+                          Text(
+                            ' ',
+                            style: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 14 * ffem,
+                              fontWeight: FontWeight.w500,
+                              height: 1.7000001272 * ffem / fem,
+                              color: Color(0xff767a8a),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                isLogin = !isLogin;
+                              });
+                            },
+                            child: Text(
+                              'Sign up',
+                              style: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 14 * ffem,
+                                fontWeight: FontWeight.w500,
+                                height: 1.7000001272 * ffem / fem,
+                                color: Color(0xff1f7ae0),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -289,5 +365,77 @@ class signup extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  mystyle({Color color = const Color(0xff979797), double size = 16}) {
+    return SafeGoogleFont(
+      'Poppins',
+      fontSize: size * ffem,
+      fontWeight: FontWeight.w500,
+      height: 1.6000000238 * ffem / fem,
+      color: color,
+    );
+  }
+
+  sendlogin(String email, String password) {
+    setState(() {
+      isLoading = true;
+    });
+    CollectionReference users = FirebaseFirestore.instance.collection('user');
+    users.doc(email).get().then((value) async {
+      if (value.exists) {
+        if (password == value.get("password").toString()) {
+          print(value.data());
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          pref.setString("LOGIN", "IN");
+          pref.setString("EMAIL", email);
+          pref.setString("PASSWORD", password);
+          pref.setString("NAME", value.get("name").toString());
+          // if (value.get("admin").exists)
+          // pref.setString("ISADMIN", value.get("admin").toString());
+          Navigator.of(context).pop();
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Scene()));
+          Fluttertoast.showToast(msg: "Sucessfully Logined");
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          Fluttertoast.showToast(msg: "Login failed , invalid Credential");
+        }
+      } else {
+        Fluttertoast.showToast(msg: "Login failed , invalid Credential");
+        setState(() {
+          isLoading = false;
+        });
+      }
+    });
+  }
+
+  sendsignup(String email, String password, String name) {
+    setState(() {
+      isLoading = true;
+    });
+    CollectionReference users = FirebaseFirestore.instance.collection('user');
+    users
+        .doc(email)
+        .set({"password": password, "name": name}).whenComplete(() async {
+      Fluttertoast.showToast(msg: "Account Created");
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      pref.setString("LOGIN", "IN");
+      pref.setString("EMAIL", email);
+      pref.setString("PASSWORD", password);
+      pref.setString("NAME", name);
+      // Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Scene()));
+      Fluttertoast.showToast(msg: "account created");
+    }).onError((error, stackTrace) {
+      setState(() {
+        isLoading = false;
+      });
+      Fluttertoast.showToast(msg: "Something went to wrong, please try again");
+    });
   }
 }
