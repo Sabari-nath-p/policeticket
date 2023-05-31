@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "130607800918",
+    "project_id": "policeticket-ca25e",
+    "storage_bucket": "policeticket-ca25e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130607800918:android:6f89cd061a273abf2551f7",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAY__6Pws2voJ7siQy-S9Qvym0QsH3HvZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
