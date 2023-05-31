@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:myapp/page-1/iphone-11-pro-x-14.dart';
-
+import 'package:myapp/page-1/homepage.dart';
 import 'package:myapp/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -395,7 +394,7 @@ class _signupState extends State<signup> {
           // pref.setString("ISADMIN", value.get("admin").toString());
           Navigator.of(context).pop();
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => Scene()));
+              .push(MaterialPageRoute(builder: (context) => home()));
           Fluttertoast.showToast(msg: "Sucessfully Logined");
         } else {
           setState(() {
@@ -429,7 +428,7 @@ class _signupState extends State<signup> {
       // Navigator.of(context).pop();
       Navigator.of(context).pop();
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => Scene()));
+          .push(MaterialPageRoute(builder: (context) => home()));
       Fluttertoast.showToast(msg: "account created");
     }).onError((error, stackTrace) {
       setState(() {
