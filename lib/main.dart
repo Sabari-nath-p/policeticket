@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/firebase_options.dart';
 import 'package:myapp/page-1/login.dart';
+import 'package:myapp/page-1/testpage.dart/testpage.dart';
 import 'package:myapp/page-1/ticket.dart';
 import 'package:myapp/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,10 +11,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:myapp/page-1/dubai.dart';
 // import 'package:myapp/page-1/login.dart';
 String log = "";
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences pref = await SharedPreferences.getInstance();
   log = pref.getString("LOGIN").toString();
-  WidgetsFlutterBinding.ensureInitialized();
+
   Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -32,8 +34,8 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: SingleChildScrollView(
-          child: (log == "IN") ? ticket() : signup(),
-        ),
+            child: testpage() //(log == "IN") ? ticket() : signup(),
+            ),
       ),
     );
   }
