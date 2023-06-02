@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/firebase_options.dart';
+import 'package:myapp/page-1/homescreen.dart';
 import 'package:myapp/page-1/login.dart';
 import 'package:myapp/page-1/testpage.dart/testpage.dart';
 import 'package:myapp/page-1/ticket.dart';
@@ -32,11 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        body: SingleChildScrollView(
-            child: testpage() //(log == "IN") ? ticket() : signup(),
-            ),
-      ),
+      home: homescreen()
     );
   }
 }
