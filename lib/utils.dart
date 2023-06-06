@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:math';
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
@@ -79,4 +80,44 @@ TextStyle SafeGoogleFont(
       decorationThickness: decorationThickness,
     );
   }
+}
+
+String encrypt(String input) {
+  // Check if the input is a valid string
+  if (input == null || input.isEmpty) {
+    return '';
+  }
+
+  // Convert the input to a list of characters
+  List<String> characters = input.split('');
+
+  // Get the length of the input
+  int inputLength = characters.length;
+
+  // If the input is less than 5 characters long, pad it with zeros
+  if (inputLength < 5) {
+    int padding = 5 - inputLength;
+    List<String> paddingCharacters = List.generate(padding, (_) => '0');
+    characters.addAll(paddingCharacters);
+  }
+
+  // Convert the list of characters to a string
+  String id = characters.join();
+  print(id);
+  // Return the id
+  return id;
+}
+
+String genid() {
+  // Create a random number generator
+  Random rng = Random();
+
+  // Generate a random number between 10000 and 99999
+  int randomNumber = rng.nextInt(90000) + 10000;
+
+  // Convert the random number to a string
+  String id = randomNumber.toString();
+
+  // Return the id
+  return id;
 }
